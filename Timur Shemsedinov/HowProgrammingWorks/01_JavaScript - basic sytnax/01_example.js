@@ -1,4 +1,5 @@
 // https://www.youtube.com/watch?v=xJn3k1f4BiM&list=PLHhi8ymDMrQZad6JDh6HRzY1Wz5WB34w0&index=3&t=0s
+// Пример создания класса и наследования с использованием class
 'use stric';
 
 const Point = class {
