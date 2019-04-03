@@ -1,3 +1,4 @@
+// https://www.youtube.com/watch?v=SjNmkeUpQAU&list=PLqHlAwsJRxAOpWPtj2T6HhSzX-lKmKV2q&index=19&t=0s
 // вариант с callback
 
 function applyForVisa(document, getVisa, didntGetVisa) {
