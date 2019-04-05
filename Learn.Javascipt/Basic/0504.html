@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--
+    <script src="0504_01.js"></script>    
+    <script src="0504_02.js"></script>
+    <script src="0504_03.js"></script>
+    <script src="0504_04.js"></script>
+    <script src="0504_05.js"></script>
+    <script src="0504_06.js"></script>
+-->
+    <script>
+
+    function f() {
+        var value = Math.random();
+      
+        return function() { return value; };
+      }
+      
+        // 3 функции, каждая ссылается на свой объект переменных,
+        // каждый со своим значением value
+        var arr = [f(), f(), f()];
+    </script>
+        
+</body>
+</html>

@@ -1,0 +1,1 @@
+var lastItem = goods[goods.length - 1];
