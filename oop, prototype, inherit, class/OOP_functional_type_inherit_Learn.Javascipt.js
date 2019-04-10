@@ -1,3 +1,4 @@
+// https://learn.javascript.ru/functional-inheritance
 'use strict';
 
 function Machine(power) {

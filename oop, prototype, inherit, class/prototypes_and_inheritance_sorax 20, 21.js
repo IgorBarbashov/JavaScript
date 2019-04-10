@@ -1,5 +1,6 @@
 // Наследование на основе прототипов
 
+// первая часть - вводная, как это делается на основе функций и без new
 var Person = {
     constructor: function(name, age) {
         this.name = name;

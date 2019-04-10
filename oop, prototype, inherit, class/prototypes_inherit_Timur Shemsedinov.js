@@ -18,9 +18,9 @@ function Square(x, y, side) {
 };
 
 Object.setPrototypeOf(Square.prototype, Rect.prototype);
-
+// или
 // Square.prototype = Object.create(Rect.prototype);
 // Square.prototype.constructor = Square;
-
+// или
 // Square.prototype = new Rect();
 // Square.prototype.constructor = Square;
