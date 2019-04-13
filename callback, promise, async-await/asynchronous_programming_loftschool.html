@@ -1,0 +1,57 @@
+<!-- https://coursehunters.net/course/kompleksnoe-obuchenie-javascript
+асинхронность -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var url1 = 'https://cdn.spacetelescope.org/archives/images/wallpaper2/heic1509a.jpg';
+        var url2 = 'https://cdn.wccftech.com/wp-content/uploads/2016/09/spacee-2060x1288.jpg';
+        var url3 = 'https://media1.s-nbcnews.com/i/MSNBC/Components/Video/201712/a_mach_space_yirspace_171229.jpg';
+
+// callback **************************************************************        
+        function loadImage(url, callback) {
+            var image1 = document.createElement('img');
+            image1.height = 200;
+            image1.src = url;
+            document.body.appendChild(image1);
+            image1.addEventListener('load', function() {
+                if (callback) {
+                    callback();
+                }
+            });
+        };
+
+        loadImage(url1, () => {
+            loadImage(url2, ()=> {
+                loadImage(url3, ()=>{
+                    console.log('все картинки загружены');
+                });
+            });
+        });
+
+// Promise **************************************************************        
+        function loadImagePromise(url) {
+            return new Promise((resolve, reject) => {
+                var image = document.createElement('img');
+                image.height = 200;
+                image.src = url;
+                document.body.appendChild(image);
+                image.addEventListener('load', resolve);
+                image.addEventListener('error', reject);
+            });
+        };
+
+        loadImagePromise(url1)
+            .then(() => loadImagePromise(url2))
+            .then(() => loadImagePromise(url3))
+            .catch(() => console.error('Ошибка загрузки картиники'));
+        
+    </script>
+</body>
+</html>

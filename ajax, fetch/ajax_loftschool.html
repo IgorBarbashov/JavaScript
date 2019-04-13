@@ -1,0 +1,49 @@
+<!-- https://coursehunters.net/course/kompleksnoe-obuchenie-javascript
+асинхронность на примере ajax (начиная с 1:40) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton">загрузить</button>
+    <div id="content"></div>
+
+    <script>
+        const myButton = document.querySelector('#myButton');
+        const myDiv = document.querySelector('#content');
+
+        function loadFile(url) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.addEventListener('load', () => resolve(xhr.response));
+                xhr.addEventListener('error', () => reject('не найден файл ' + url));
+
+                xhr.send();
+            });
+        };
+
+        function addNewDiv(where, content) {
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = content;
+            where.appendChild(newDiv);
+        };
+
+        // catch может "исправить" цепочку promise
+        myButton.addEventListener('click', () => {
+            loadFile('http://localhost:3000/file11')
+                .then(response => addNewDiv(myDiv, response),
+                    error => console.log('Ай-ай-ай, ошибка1:', error))
+                .then(() => loadFile('http://localhost:3000/file2'))
+                .then(response => addNewDiv(myDiv, response))
+                .catch(error => console.log('Ай-ай-ай, ошибка2:', error));
+        });
+
+    </script>
+</body>
+</html>

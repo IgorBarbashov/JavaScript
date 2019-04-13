@@ -1,0 +1,40 @@
+<!-- https://coursehunters.net/course/kompleksnoe-obuchenie-javascript
+Урок 14. Практика: fetch -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton">загрузить</button>
+    <div id="content"></div>
+
+    <script>
+        const myButton = document.querySelector('#myButton');
+        const myDiv = document.querySelector('#content');
+
+        function addNewDiv(where, content) {
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = content;
+            where.appendChild(newDiv);
+        };
+
+        myButton.addEventListener('click', () => {
+            fetch('http://localhost:3000/file1')
+                .then(
+                    response => response.text().
+                        then(response => addNewDiv(myDiv, response)),
+                    reject => console.log('ошибочка'))
+                .then(() => fetch('http://localhost:3000/file22'))
+                .then(response => response.text())
+                .then((response) => addNewDiv(myDiv, response))
+                .catch(error => console.log('Ай-ай-ай, ошибка2:', error));
+        });
+
+    </script>
+</body>
+</html>
